@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
 class UserController extends Controller
 {
+    protected UserService $userService;
+
+    public function __construct()
+    {
+        $this->userService = new UserService();
+    }
+
     public function create(Request $request): JsonResponse
     {
         $request->validate([
@@ -15,7 +22,7 @@ class UserController extends Controller
             'password' => 'required|confirmed'
         ]);
 
-        $user = User::create([
+        $user = $this->userService->createUser([
             'email' => $request->input('email'),
             'password' => $request->input('password')
         ]);
