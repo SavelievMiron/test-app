@@ -27,7 +27,7 @@ class RegisterUserTest extends TestCase
             'password_confirmation' => $password
         ];
 
-        $response = $this->post('http://localhost/users', $data);
+        $response = $this->json('POST', "{$_ENV['APP_URL']}users", $data);
 
         $response->assertStatus(201);
         $response->assertJson([
