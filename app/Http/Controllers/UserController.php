@@ -15,6 +15,11 @@ class UserController extends Controller
         $this->userService = new UserService();
     }
 
+
+    /** Create User
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function create(Request $request): JsonResponse
     {
         $request->validate([
