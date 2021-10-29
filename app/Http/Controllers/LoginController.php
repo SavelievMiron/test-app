@@ -20,16 +20,8 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        $user = User::where('email', $credentials['email'])->first();
-
-        if (is_null($user)) {
-            return response()->json([
-                'error' => 'There is no user with such email.'
-            ], 403);
-        }
-
         if(Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+            $user = User::where('email', $credentials['email'])->first();
 
             $token = $user->createToken('Basic');
             return response()->json([
@@ -37,7 +29,7 @@ class LoginController extends Controller
             ]);
         } else {
             return response()->json([
-                'error' => 'An email or password is wrong.'
+                'error' => 'An email or password is wrong. Try again.'
             ], 403);
         }
     }
