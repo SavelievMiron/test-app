@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
@@ -10,7 +11,7 @@ class UserService
     {
         return User::create([
            'email' => $data['email'],
-           'password' => $data['password']
+           'password' =>  Hash::make($data['password'])
         ]);
     }
 }

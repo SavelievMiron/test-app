@@ -32,8 +32,7 @@ class CreateUserTest extends TestCase
 
         $this->assertInstanceOf(User::class, $user);
         $this->assertDatabaseHas('users', [
-            'email' => $data['email'],
-            'password' => $data['password']
+            'email' => $data['email']
         ]);
     }
 }
