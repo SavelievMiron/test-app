@@ -11,8 +11,7 @@ use Tests\TestCase;
 
 class LoginUserTest extends TestCase
 {
-    use WithFaker;
-    use RefreshDatabase;
+    use WithFaker, RefreshDatabase;
 
     protected UserService $userService;
 
