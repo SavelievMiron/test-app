@@ -34,7 +34,7 @@ class ResetUserPasswordTest extends TestCase
            'message' => true
         ]);
 
-        $resetPasswordToken = $user->resetPassword()->first()->token;
+        $resetPasswordToken = $user->resetPassword->token;
 
         $new_password = $this->faker->password();
 

@@ -47,7 +47,7 @@ class UserService
     {
         $resetPassword = ResetPassword::where('token', $data['token'])->first();
 
-        $creation_time = Carbon::parse($resetPassword->created_at);
+        $creation_time = $resetPassword->created_at;
         $curr_time = Carbon::now();
 
         if($curr_time->diff($creation_time)->h > 2) {
@@ -56,7 +56,7 @@ class UserService
             ];
         }
 
-        $user = $resetPassword->user()->first();
+        $user = $resetPassword->user;
         $user->password = Hash::make($data['password']);
         $user->save();
 
